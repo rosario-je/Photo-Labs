@@ -8,10 +8,11 @@ const PhotoListItem = (props) => {
 
   function handleFavButtonClick() {
     console.log("Fav button clicked");
-    setSelected(!selected);
-    setDisplayAlert(!displayAlert);
-    console.log(displayAlert);
+    setSelected((prevSelected) => !prevSelected);
+    setDisplayAlert((prevDisplayAlert) => !prevDisplayAlert);
   }
+
+  console.log(props.data);
 
   return (
     <article key={props.data.key}>
@@ -23,17 +24,17 @@ const PhotoListItem = (props) => {
         />
         <img
           className="photo-list__image"
-          src={props.data.imageSource}
+          src={props.data.urls.regular}
           alt="image"
         />
         <div className="photo-list__user-details">
           <img
             className="photo-list__user-profile"
-            src={props.data.profile}
-            alt=""
+            src={props.data.user.profile}
+            alt="user profile"
           />
           <div className="photo-list__user-info">
-            <h2>{props.data.username}</h2>
+            <h2>{props.data.user.username}</h2>
             <h3 className="photo-list__user-location">
               {props.data.location.city}, {props.data.location.country}
             </h3>

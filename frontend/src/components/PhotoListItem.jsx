@@ -5,12 +5,12 @@ import "../styles/PhotoListItem.scss";
 const PhotoListItem = (props) => {
 
   return (
-    <article key={props.key}>
+    <article key={props.data.key}>
       <div className="photoItem">
-        <img src={props.imageSource} alt="image" />
-        <img src={props.profile} alt="" />
-        <h2>{props.username}</h2>
-        <h3>{props.city}, {props.country}</h3>
+        <img src={props.data.imageSource} alt="image" />
+        <img src={props.data.profile} alt="" />
+        <h2>{props.data.username}</h2>
+        <h3>{props.data.location.city}, {props.data.location.country}</h3>
       </div>
     </article>
   );

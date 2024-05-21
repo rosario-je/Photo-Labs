@@ -26,14 +26,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <PhotoListItem
-        key={id}
-        city={city}
-        country={country}
-        imageSource={imageSource}
-        username={username}
-        profile={profile}
-      />
+      <PhotoListItem data={sampleDataForPhotoListItem} />
     </div>
   );
 };

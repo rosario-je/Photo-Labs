@@ -1,11 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/PhotoListItem.scss";
+import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = (props) => {
-    
+  const [selected, setSelected] = useState(false);
+  const [displayAlert, setDisplayAlert] = useState(false);
+
+  function handleFavButtonClick() {
+    console.log("Fav button clicked");
+    setSelected(!selected);
+    setDisplayAlert(!displayAlert);
+    console.log(displayAlert);
+  }
+
   return (
     <article key={props.data.key}>
       <div className="photo-list__item">
+        <PhotoFavButton
+          onClick={handleFavButtonClick}
+          selected={selected}
+          displayAlert={displayAlert}
+        />
         <img
           className="photo-list__image"
           src={props.data.imageSource}

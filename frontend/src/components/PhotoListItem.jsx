@@ -10,6 +10,7 @@ const PhotoListItem = (props) => {
     console.log("Fav button clicked");
     setSelected((prevSelected) => !prevSelected);
     setDisplayAlert((prevDisplayAlert) => !prevDisplayAlert);
+    
   }
 
   return (

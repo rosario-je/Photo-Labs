@@ -19,7 +19,7 @@ const PhotoListItem = (props) => {
     console.log("Fav button clicked");
     setSelected((prevSelected) => !prevSelected);
     setDisplayAlert((prevDisplayAlert) => !prevDisplayAlert);
-    onToggleFavourite(data.id)
+    onToggleFavourite(data.id);
   }
   return (
     <article key={data.key}>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import PhotoList from "components/PhotoList";
 import TopNavigation from "components/TopNavigationBar";
@@ -6,18 +6,24 @@ import TopNavigation from "components/TopNavigationBar";
 import "../styles/HomeRoute.scss";
 
 const HomeRoute = (props) => {
+  //Set favorite state
+  const [favourites, setFavourites] = useState([]);
 
-  const [favPhoto, setFavPhoto] = useState({})
-
-  function handleFavPhoto() {
-    setFavPhoto(...favPhoto, photos)
-  }
+  const toggleFavourite = (photoId) => {
+    favourites.includes(photoId)
+      ? setFavourites(favourites.filter((id) => id !== photoId))
+      : setFavourites([...favourites, photoId]);
+  };
 
   const { topics, photos } = props;
   return (
     <div className="home-route">
       <TopNavigation topics={topics} />
-      <PhotoList photos={photos} handleFavButtonClick={handleFavPhoto}/>
+      <PhotoList
+        photos={photos}
+        favourites={favourites}
+        onToggleFavourite={toggleFavourite}
+      />
     </div>
   );
 };

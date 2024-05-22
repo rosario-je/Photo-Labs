@@ -12,8 +12,6 @@ const PhotoListItem = (props) => {
     setDisplayAlert((prevDisplayAlert) => !prevDisplayAlert);
   }
 
-  console.log(props.data);
-
   return (
     <article key={props.data.key}>
       <div className="photo-list__item">

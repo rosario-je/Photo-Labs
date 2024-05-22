@@ -6,10 +6,9 @@ const PhotoListItem = (props) => {
   const { data, favourites, onToggleFavourite } = props;
 
   const {
-    id,
     location: { city, country },
     user: { name, profile, username },
-    urls: { full, regular },
+    urls: { regular },
   } = data;
 
   const [selected, setSelected] = useState(false);
@@ -37,7 +36,8 @@ const PhotoListItem = (props) => {
             alt="user profile"
           />
           <div className="photo-list__user-info">
-            <h2>{username}</h2>
+            <h2>{name}</h2>
+            <h3>@{username}</h3>
             <h3 className="photo-list__user-location">
               {city}, {country}
             </h3>

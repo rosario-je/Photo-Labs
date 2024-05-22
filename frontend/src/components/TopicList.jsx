@@ -22,7 +22,7 @@ const sampleDataForTopicList = [
 
 const TopicList = () => {
   const allTopics = sampleDataForTopicList.map((topic) => 
-    <TopicListItem key={topic.id} data={topic} />
+    <TopicListItem key={topic.id} topic={topic} />
   )
   return (
     <div className="top-nav-bar__topic-list">

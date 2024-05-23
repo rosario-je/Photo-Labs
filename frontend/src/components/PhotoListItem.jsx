@@ -19,6 +19,11 @@ const PhotoListItem = (props) => {
     setDisplayAlert((prevDisplayAlert) => !prevDisplayAlert);
     onToggleFavourite(data.id);
   }
+  
+  function handleClick() {
+    displayModalWindow(data)
+  }
+
   return (
     <article key={data.key} >
       <div className="photo-list__item" >
@@ -27,7 +32,7 @@ const PhotoListItem = (props) => {
           selected={selected}
           displayAlert={displayAlert}
         />
-        <img className="photo-list__image" src={regular} alt="image" onClick={displayModalWindow}/>
+        <img className="photo-list__image" src={regular} alt="image" onClick={handleClick}/>
         <div className="photo-list__user-details">
           <img
             className="photo-list__user-profile"

@@ -5,8 +5,7 @@ import PhotoListItem from "./PhotoListItem";
 import "../styles/PhotoList.scss";
 
 const PhotoList = (props) => {
-  const { photos, favourites, onToggleFavourite, displayModalWindow} = props;
-
+  const { photos, favourites, onToggleFavourite, displayModalWindow } = props;
 
   const allPhotos = photos.map((photo) => (
     <PhotoListItem

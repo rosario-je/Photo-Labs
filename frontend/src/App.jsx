@@ -32,7 +32,7 @@ const App = () => {
         displayModalWindow={displayModalWindow}
       />
       {toggleMondalWindow && <PhotoDetailsModal onClose={closeModalWindow}
-        photosObject={selectedPhoto}
+        photo={selectedPhoto}
       />}
     </div>
   );

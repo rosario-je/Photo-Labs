@@ -20,14 +20,14 @@ const PhotoListItem = (props) => {
     onToggleFavourite(data.id);
   }
   return (
-    <article key={data.key} onClick={displayModalWindow}>
-      <div className="photo-list__item">
+    <article key={data.key} >
+      <div className="photo-list__item" >
         <PhotoFavButton
           onClick={handleFavButtonClick}
           selected={selected}
           displayAlert={displayAlert}
         />
-        <img className="photo-list__image" src={regular} alt="image" />
+        <img className="photo-list__image" src={regular} alt="image" onClick={displayModalWindow}/>
         <div className="photo-list__user-details">
           <img
             className="photo-list__user-profile"

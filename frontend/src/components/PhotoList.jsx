@@ -6,7 +6,7 @@ import "../styles/PhotoList.scss";
 
 const PhotoList = (props) => {
   const { photos, favourites, onToggleFavourite, displayModalWindow} = props;
-  console.log("these:", photos);
+
 
   const allPhotos = photos.map((photo) => (
     <PhotoListItem

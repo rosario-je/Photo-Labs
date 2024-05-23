@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import FavIcon from './FavIcon';
 
 import '../styles/FavBadge.scss';
 
 const FavBadge = ({ isFavPhotoExist }) => {
+  const hasFavPhotos = isFavPhotoExist.length >= 1;
+  
   return (
     <div className='fav-badge'>
-      <FavIcon displayAlert={!!isFavPhotoExist}/>
+      <FavIcon displayAlert={hasFavPhotos} selected={hasFavPhotos}/>
     </div>
   ) 
 };

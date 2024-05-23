@@ -3,7 +3,7 @@ import "../styles/PhotoListItem.scss";
 import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = (props) => {
-  const { data, favourites, onToggleFavourite } = props;
+  const { data, favourites, onToggleFavourite, displayModalWindow } = props;
 
   const {
     location: { city, country },
@@ -20,7 +20,7 @@ const PhotoListItem = (props) => {
     onToggleFavourite(data.id);
   }
   return (
-    <article key={data.key}>
+    <article key={data.key} onClick={displayModalWindow}>
       <div className="photo-list__item">
         <PhotoFavButton
           onClick={handleFavButtonClick}

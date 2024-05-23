@@ -15,6 +15,9 @@ const App = () => {
     setToggleModalWindow(toggleMondalWindow ? false : true);
     console.log('article clicked');
   }
+  function closeModalWindow() {
+    setToggleModalWindow(false);
+  }
 
   return (
     <div className="App">
@@ -23,7 +26,7 @@ const App = () => {
         topics={topics}
         displayModalWindow={displayModalWindow}
       />
-      {toggleMondalWindow && <PhotoDetailsModal />}
+      {toggleMondalWindow && <PhotoDetailsModal closeModalWindow={closeModalWindow}/>}
     </div>
   );
 };

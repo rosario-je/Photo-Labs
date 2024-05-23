@@ -6,6 +6,8 @@ import TopNavigation from "components/TopNavigationBar";
 import "../styles/HomeRoute.scss";
 
 const HomeRoute = (props) => {
+  const { topics, photos, displayModalWindow } = props;
+  
   //Set favorite state
   const [favourites, setFavourites] = useState([]);
 
@@ -15,7 +17,6 @@ const HomeRoute = (props) => {
       : setFavourites([...favourites, photoId]);
   };
 
-  const { topics, photos } = props;
   return (
     <div className="home-route">
       <TopNavigation topics={topics} favourites={favourites}/>
@@ -23,6 +24,7 @@ const HomeRoute = (props) => {
         photos={photos}
         favourites={favourites}
         onToggleFavourite={toggleFavourite}
+        displayModalWindow={displayModalWindow}
       />
     </div>
   );

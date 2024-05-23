@@ -15,7 +15,6 @@ const PhotoListItem = (props) => {
   const [displayAlert, setDisplayAlert] = useState(false);
 
   function handleFavButtonClick() {
-    console.log("Fav button clicked");
     setSelected((prevSelected) => !prevSelected);
     setDisplayAlert((prevDisplayAlert) => !prevDisplayAlert);
     onToggleFavourite(data.id);

@@ -15,24 +15,29 @@ const PhotoListItem = (props) => {
   const [displayAlert, setDisplayAlert] = useState(false);
 
   function handleFavButtonClick() {
-    setSelected((prevSelected) => !prevSelected);
-    setDisplayAlert((prevDisplayAlert) => !prevDisplayAlert);
+    selected ? setSelected(false) : setSelected(true);
+    displayAlert ? setDisplayAlert(false) : setDisplayAlert(true);
     onToggleFavourite(data.id);
   }
-  
+
   function handleClick() {
-    displayModalWindow(data)
+    displayModalWindow(data);
   }
 
   return (
-    <article key={data.key} >
-      <div className="photo-list__item" >
+    <article key={data.key}>
+      <div className="photo-list__item">
         <PhotoFavButton
           onClick={handleFavButtonClick}
           selected={selected}
           displayAlert={displayAlert}
         />
-        <img className="photo-list__image" src={regular} alt="image" onClick={handleClick}/>
+        <img
+          className="photo-list__image"
+          src={regular}
+          alt="image"
+          onClick={handleClick}
+        />
         <div className="photo-list__user-details">
           <img
             className="photo-list__user-profile"

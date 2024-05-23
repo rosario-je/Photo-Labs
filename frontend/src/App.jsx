@@ -10,14 +10,19 @@ import "./App.scss";
 // Note: Rendering a single component to build components in isolation
 const App = () => {
   const [toggleMondalWindow, setToggleModalWindow] = useState(false);
+  const [selectedPhoto, setSelectedPhoto] = useState(null)
 
-  function displayModalWindow() {
-    setToggleModalWindow(toggleMondalWindow ? false : true);
-    console.log('article clicked');
-  }
-  function closeModalWindow() {
+  const displayModalWindow = (data) => {
+    setSelectedPhoto(data);
+    setToggleModalWindow(true);
+  };
+
+  const closeModalWindow = () => {
     setToggleModalWindow(false);
-  }
+    setSelectedPhoto(null);
+  };
+  
+
 
   return (
     <div className="App">
@@ -26,7 +31,9 @@ const App = () => {
         topics={topics}
         displayModalWindow={displayModalWindow}
       />
-      {toggleMondalWindow && <PhotoDetailsModal closeModalWindow={closeModalWindow}/>}
+      {toggleMondalWindow && <PhotoDetailsModal onClose={closeModalWindow}
+        photosObject={selectedPhoto}
+      />}
     </div>
   );
 };

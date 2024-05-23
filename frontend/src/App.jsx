@@ -9,10 +9,10 @@ import "./App.scss";
 
 // Note: Rendering a single component to build components in isolation
 const App = () => {
-  const [modalVisible, setModalVisible] = useState(false);
+  const [toggleMondalWindow, setToggleModalWindow] = useState(false);
 
   function displayModalWindow() {
-    setModalVisible(modalVisible ? false : true);
+    setToggleModalWindow(toggleMondalWindow ? false : true);
     console.log('article clicked');
   }
 
@@ -23,7 +23,7 @@ const App = () => {
         topics={topics}
         displayModalWindow={displayModalWindow}
       />
-      {modalVisible && <PhotoDetailsModal />}
+      {toggleMondalWindow && <PhotoDetailsModal />}
     </div>
   );
 };

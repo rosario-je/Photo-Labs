@@ -1,28 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 import "../styles/PhotoListItem.scss";
 import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = (props) => {
   const { data, favourites, onToggleFavourite, displayModalWindow } = props;
-
   const {
     location: { city, country },
     user: { name, profile, username },
     urls: { regular },
   } = data;
 
-  const [selected, setSelected] = useState(false);
-  const [displayAlert, setDisplayAlert] = useState(false);
+  const selected = favourites.includes(data.id);
 
-  function handleFavButtonClick() {
-    selected ? setSelected(false) : setSelected(true);
-    displayAlert ? setDisplayAlert(false) : setDisplayAlert(true);
+  const handleFavButtonClick = () => {
     onToggleFavourite(data.id);
-  }
+  };
 
-  function handleClick() {
+  const handleClick = () => {
     displayModalWindow(data);
-  }
+  };
 
   return (
     <article key={data.key}>
@@ -30,7 +26,6 @@ const PhotoListItem = (props) => {
         <PhotoFavButton
           onClick={handleFavButtonClick}
           selected={selected}
-          displayAlert={displayAlert}
         />
         <img
           className="photo-list__image"

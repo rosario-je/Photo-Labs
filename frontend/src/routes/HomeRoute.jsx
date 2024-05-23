@@ -25,6 +25,7 @@ const HomeRoute = (props) => {
         favourites={favourites}
         onToggleFavourite={toggleFavourite}
         displayModalWindow={displayModalWindow}
+        
       />
     </div>
   );

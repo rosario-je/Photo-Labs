@@ -12,7 +12,7 @@ const App = () => {
   const [toggleMondalWindow, setToggleModalWindow] = useState(false);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
   const [favourites, setFavourites] = useState([]);
-  // console.log('this is the app component:', favourites);
+
 
   const toggleFavourite = (photoId) => {
     favourites.includes(photoId)

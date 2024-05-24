@@ -1,9 +1,10 @@
 import React from "react";
-import "../styles/PhotoListItem.scss";
 import PhotoFavButton from "./PhotoFavButton";
+import "../styles/PhotoListItem.scss";
+import "../styles/PhotoDetailsModal.scss";
 
 const PhotoListItem = (props) => {
-  const { data, favourites, onToggleFavourite, displayModalWindow } = props;
+  const { data, favourites, onToggleFavourite, displayModalWindow, className } = props;
   const {
     location: { city, country },
     user: { name, profile, username },
@@ -21,12 +22,9 @@ const PhotoListItem = (props) => {
   };
 
   return (
-    <article key={data.key}>
+    <article key={data.key} className={className}>
       <div className="photo-list__item">
-        <PhotoFavButton
-          onClick={handleFavButtonClick}
-          selected={selected}
-        />
+        <PhotoFavButton onClick={handleFavButtonClick} selected={selected} />
         <img
           className="photo-list__image"
           src={regular}
@@ -41,7 +39,7 @@ const PhotoListItem = (props) => {
           />
           <div className="photo-list__user-info">
             <h2>{name}</h2>
-            <h3>@{username}</h3>
+
             <h3 className="photo-list__user-location">
               {city}, {country}
             </h3>

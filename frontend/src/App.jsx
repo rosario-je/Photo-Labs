@@ -5,7 +5,7 @@ import HomeRoute from "routes/HomeRoute";
 import PhotoDetailsModal from "routes/PhotoDetailsModal";
 
 /*Custom hooks*/
-import useApp from "hooks/useApp";
+import useApplicationData from "hooks/useApplicationData";
 
 /*Custom data*/
 import photos from "mocks/photos";
@@ -23,7 +23,7 @@ const App = () => {
     toggleFavourite,
     displayModalWindow,
     closeModalWindow,
-  } = useApp()
+  } = useApplicationData()
   
 
   return (

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const useApp = () => {
+const useApplicationData = () => {
   const [toggleMondalWindow, setToggleModalWindow] = useState(false);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
   const [favourites, setFavourites] = useState([]);
@@ -32,4 +32,4 @@ const useApp = () => {
   };
 }
 
-export default useApp;
+export default useApplicationData;

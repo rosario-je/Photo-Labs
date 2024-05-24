@@ -1,7 +1,7 @@
 .photo-list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -9,6 +9,6 @@
 
 .photo-list:after {
   content: "";
-  flex: 0 1 30%;
+  flex: 0 1 59%;
   margin: 5px;
 }

@@ -1,34 +1,30 @@
-import React, { useState } from "react";
+import React from "react";
 
+/*Components*/
 import HomeRoute from "routes/HomeRoute";
 import PhotoDetailsModal from "routes/PhotoDetailsModal";
+
+/*Custom hooks*/
+import useApp from "hooks/useApp";
+
+/*Custom data*/
 import photos from "mocks/photos";
 import topics from "mocks/topics";
 
+/*Styles*/
 import "./App.scss";
 
-// Note: Rendering a single component to build components in isolation
+
 const App = () => {
-  const [toggleMondalWindow, setToggleModalWindow] = useState(false);
-  const [selectedPhoto, setSelectedPhoto] = useState(null);
-  const [favourites, setFavourites] = useState([]);
-
-
-  const toggleFavourite = (photoId) => {
-    favourites.includes(photoId)
-      ? setFavourites(favourites.filter((id) => id !== photoId))
-      : setFavourites([...favourites, photoId]);
-  };
-
-  const displayModalWindow = (data) => {
-    setSelectedPhoto(data);
-    setToggleModalWindow(true);
-  };
-
-  const closeModalWindow = () => {
-    setToggleModalWindow(false);
-    setSelectedPhoto(null);
-  };
+  const {
+    toggleMondalWindow,
+    selectedPhoto,
+    favourites,
+    toggleFavourite,
+    displayModalWindow,
+    closeModalWindow,
+  } = useApp()
+  
 
   return (
     <div className="App">

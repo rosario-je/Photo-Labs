@@ -21,7 +21,7 @@ const PhotoDetailsModal = (props) => {
       </button>
 
       <article key={photo.id}>
-        <div>
+        <div className="photo-details-modal__main__image">
           <PhotoFavButton
             onClick={handleFavButtonClick}
             selected={selected}
@@ -46,7 +46,7 @@ const PhotoDetailsModal = (props) => {
           </div>
         </div>
       </article>
-      <header className="photo-details-modal__header">Similar Photos</header>
+      <header className="photo-details-modal__header">Related Photos</header>
       <PhotoList
         photos={photoArray}
         favourites={favourites}

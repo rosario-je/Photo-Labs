@@ -17,12 +17,12 @@ import "./App.scss";
 
 const App = () => {
   const {
-    toggleMondalWindow,
+    toggleModalWindow,
     selectedPhoto,
     favourites,
     toggleFavourite,
     displayModalWindow,
-    closeModalWindow,
+    closeModalWindow
   } = useApplicationData()
   
 
@@ -35,7 +35,7 @@ const App = () => {
         favourites={favourites}
         toggleFavourite={toggleFavourite}
       />
-      {toggleMondalWindow && (
+      {toggleModalWindow && (
         <PhotoDetailsModal
           onClose={closeModalWindow}
           photo={selectedPhoto}

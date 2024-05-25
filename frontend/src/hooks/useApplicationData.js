@@ -21,24 +21,25 @@ function reducer(state, action) {
       return { ...state, favourites: [...state.favourites, payload.photoId] }
       
     case ACTIONS.FAV_PHOTO_REMOVED:
-      updatedState.favourites = state.favourites.filter((id) => id !== payload.photoId);
-      return updatedState;
+      // updatedState.favourites = state.favourites.filter((id) => id !== payload.photoId);
+      // return updatedState;
+      return { ...state, favourites: [...state.favourites.filter((id) => id !== payload.photoId)]};
 
     case ACTIONS.SELECT_PHOTO:
       // const updatedSelectedPhoto = payload.data
       // updatedState.selectedPhoto = updatedSelectedPhoto;
-      // console.log("TEST");
-      updatedState.selectedPhoto = payload.data;
-      return updatedState
+      // updatedState.selectedPhoto = payload.data;
+      // return updatedState
+      return {...state, selectedPhoto: payload.data}
 
 
     case ACTIONS.DISPLAY_PHOTO_DETAILS:
       // const newModalState = payload.modalWindowState;
       // updatedState.toggleModalWindow = newModalState;
       // console.log("MODAL TEST");
-      updatedState.toggleModalWindow = payload.modalWindowState;
-      return updatedState;
-
+      // updatedState.toggleModalWindow = payload.modalWindowState;
+      // return updatedState;
+      return {...state, toggleModalWindow: payload.modalWindowState}
 
     case ACTIONS.SET_PHOTO_DATA:
     //Logic to be implemented
@@ -88,12 +89,10 @@ const useApplicationData = () => {
 
   /*--------------    Close Modal Window   --------------*/
   const closeModalWindow = () => {
-    //Calls reducer function and sets the selected photo to null; 
     dispatch({
       type: ACTIONS.SELECT_PHOTO,
       payload: { data: null }
     });
-    //Calls reducer function and sets the toggleModalWindow state to false
     dispatch({
       type: ACTIONS.DISPLAY_PHOTO_DETAILS,
       payload: { modalWindowState: false }

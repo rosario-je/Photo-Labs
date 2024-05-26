@@ -1,4 +1,6 @@
-import { useReducer } from "react";
+import { useReducer, useEffect } from "react";
+import axios from "axios";
+import topics from "mocks/topics";
 
 export const ACTIONS = {
   FAV_PHOTO_ADDED: 'FAV_PHOTO_ADDED',
@@ -26,10 +28,12 @@ function reducer(state, action) {
       return { ...state, toggleModalWindow: payload.modalWindowState }
 
     case ACTIONS.SET_PHOTO_DATA:
-    //Logic to be implemented
+      return { ...state, photos: payload.photoData};
 
     case ACTIONS.SET_TOPIC_DATA:
-    //Logic to be implemented
+      return { ...state, topics: payload.topicsData}
+
+
     default:
       throw new Error(
         `Tried to reduce with unsupported action type: ${action.type}`
@@ -42,8 +46,27 @@ const useApplicationData = () => {
     {
       toggleModalWindow: false,
       selectedPhoto: null,
-      favourites: []
+      favourites: [],
+      photos: [],
+      topics: []
     })
+
+  useEffect(() => {
+    axios.get("/api/photos")
+    .then((res) => {
+      const photoData = res.data
+      dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: { photoData } });
+    })
+  }, []);
+
+  useEffect(() => {
+    axios.get("/api/topics")
+    .then((res) => {
+      const topicsData = res.data
+      console.log(topicsData);
+      dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: { topicsData } });
+    })
+  }, []);
 
   /*--------------    Toggle Fav Photo   --------------*/
   const toggleFavourite = (photoId) => {
@@ -66,6 +89,8 @@ const useApplicationData = () => {
     toggleModalWindow: state.toggleModalWindow,
     selectedPhoto: state.selectedPhoto,
     favourites: state.favourites,
+    photos: state.photos,
+    topics: state.topics,
     toggleFavourite,
     displayModalWindow,
     closeModalWindow

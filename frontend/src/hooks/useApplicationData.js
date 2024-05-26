@@ -28,10 +28,10 @@ function reducer(state, action) {
       return { ...state, toggleModalWindow: payload.modalWindowState }
 
     case ACTIONS.SET_PHOTO_DATA:
-      return { ...state, photos: payload.photoData};
+      return { ...state, photos: payload.photoData };
 
     case ACTIONS.SET_TOPIC_DATA:
-      return { ...state, topics: payload.topicsData}
+      return { ...state, topics: payload.topicsData }
 
 
     default:
@@ -53,19 +53,22 @@ const useApplicationData = () => {
 
   useEffect(() => {
     axios.get("/api/photos")
-    .then((res) => {
-      const photoData = res.data
-      dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: { photoData } });
-    })
+      .then((res) => {
+        const photoData = res.data
+        dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: { photoData } });
+      })
+      .catch((error) => console.log(error));
+
   }, []);
 
   useEffect(() => {
     axios.get("/api/topics")
-    .then((res) => {
-      const topicsData = res.data
-      console.log(topicsData);
-      dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: { topicsData } });
-    })
+      .then((res) => {
+        const topicsData = res.data
+        dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: { topicsData } });
+      })
+      .catch((error) => console.log(error))
+
   }, []);
 
   /*--------------    Toggle Fav Photo   --------------*/

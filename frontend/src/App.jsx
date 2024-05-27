@@ -7,13 +7,10 @@ import PhotoDetailsModal from "routes/PhotoDetailsModal";
 /*Custom hooks*/
 import useApplicationData from "hooks/useApplicationData";
 
-
 /*Styles*/
 import "./App.scss";
 
-
 const App = () => {
-
   const {
     toggleModalWindow,
     selectedPhoto,
@@ -23,9 +20,8 @@ const App = () => {
     toggleFavourite,
     displayModalWindow,
     closeModalWindow,
-    handleTopicClick
-  } = useApplicationData()
-  
+    handleTopicClick,
+  } = useApplicationData();
 
   return (
     <div className="App">

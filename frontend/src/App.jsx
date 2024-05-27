@@ -7,9 +7,6 @@ import PhotoDetailsModal from "routes/PhotoDetailsModal";
 /*Custom hooks*/
 import useApplicationData from "hooks/useApplicationData";
 
-// /*Custom data*/
-// import photos from "mocks/photos";
-// import topics from "mocks/topics";
 
 /*Styles*/
 import "./App.scss";
@@ -25,7 +22,8 @@ const App = () => {
     topics,
     toggleFavourite,
     displayModalWindow,
-    closeModalWindow
+    closeModalWindow,
+    handleTopicClick
   } = useApplicationData()
   
 
@@ -37,6 +35,7 @@ const App = () => {
         displayModalWindow={displayModalWindow}
         favourites={favourites}
         toggleFavourite={toggleFavourite}
+        handleTopicClick={handleTopicClick}
       />
       {toggleModalWindow && (
         <PhotoDetailsModal

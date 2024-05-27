@@ -1,6 +1,5 @@
 import { useReducer, useEffect } from "react";
 import axios from "axios";
-import topics from "mocks/topics";
 
 export const ACTIONS = {
   FAV_PHOTO_ADDED: 'FAV_PHOTO_ADDED',
@@ -36,7 +35,7 @@ function reducer(state, action) {
 
     case ACTIONS.GET_PHOTOS_BY_TOPICS:
       return { ...state, photos: payload.topicPhotoData }
-      
+
     case ACTIONS.SET_SELECTED_TOPIC:
       return { ...state, selectedTopic: payload.topicId }
 
@@ -51,22 +50,23 @@ const useApplicationData = () => {
     {
       toggleModalWindow: false,
       selectedPhoto: null,
+      selectedTopic: null,
       favourites: [],
       photos: [],
-      topics: [],
-      selectedTopic: null
+      topics: []
     })
 
+  // This useEffect is responsible for fetching all photos from the API and updating the state with the retrieved data.
   useEffect(() => {
     axios.get("/api/photos")
       .then((res) => {
-        const photoData = res.data
+        const photoData = res.data;
         dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: { photoData } });
       })
       .catch((error) => console.log(error));
-
   }, []);
 
+  // This useEffect is responsible for fetchin all topics from the API and updating the state with the retrieved data.
   useEffect(() => {
     axios.get("/api/topics")
       .then((res) => {
@@ -77,6 +77,7 @@ const useApplicationData = () => {
 
   }, []);
 
+  // This useEffect is responsible for fetching all the photos that are under the specific category id and updating the state with the retrieved data.
   useEffect(() => {
     if (state.selectedTopic) {
       axios.get(`/api/topics/photos/${state.selectedTopic}`)
@@ -87,6 +88,7 @@ const useApplicationData = () => {
         .catch(error => console.log(error));
     }
   }, [state.selectedTopic]);
+
 
   /*--------------    Set topic specific photos   --------------*/
   const handleTopicClick = (topicId) => {
@@ -99,11 +101,13 @@ const useApplicationData = () => {
       ? dispatch({ type: ACTIONS.FAV_PHOTO_REMOVED, payload: { photoId } })
       : dispatch({ type: ACTIONS.FAV_PHOTO_ADDED, payload: { photoId } })
   };
+
   /*--------------    Display Modal Window   --------------*/
   const displayModalWindow = (data) => {
     dispatch({ type: ACTIONS.SELECT_PHOTO, payload: { data } });
     dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS, payload: { modalWindowState: true } })
   };
+
   /*--------------    Close Modal Window   --------------*/
   const closeModalWindow = () => {
     dispatch({ type: ACTIONS.SELECT_PHOTO, payload: { data: null } });

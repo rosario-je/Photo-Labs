@@ -8,6 +8,8 @@ const PhotoDetailsModal = (props) => {
   const { onClose, photo, favourites, toggleFavourite } = props;
   const { similar_photos } = photo;
   const photoArray = Object.values(similar_photos);
+
+  //Turn selected to true if the photo id is found in the "favourites" statexszza
   const selected = favourites.includes(photo.id);
 
   const handleFavButtonClick = () => {
@@ -22,10 +24,7 @@ const PhotoDetailsModal = (props) => {
 
       <article key={photo.id}>
         <div className="photo-details-modal__main__image">
-          <PhotoFavButton
-            onClick={handleFavButtonClick}
-            selected={selected}
-          />
+          <PhotoFavButton onClick={handleFavButtonClick} selected={selected} />
           <img
             className="photo-details-modal__image"
             src={photo.urls.regular}

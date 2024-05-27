@@ -6,12 +6,12 @@ import TopNavigation from "components/TopNavigationBar";
 import "../styles/HomeRoute.scss";
 
 const HomeRoute = (props) => {
-  const { topics, photos, displayModalWindow, toggleFavourite, favourites } =
+  const { topics, photos, displayModalWindow, toggleFavourite, favourites, handleTopicClick } =
     props;
 
   return (
     <div className="home-route">
-      <TopNavigation topics={topics} favourites={favourites} />
+      <TopNavigation topics={topics} favourites={favourites} handleTopicClick={handleTopicClick} />
       <PhotoList
         photos={photos}
         favourites={favourites}

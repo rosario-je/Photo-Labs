@@ -8,11 +8,12 @@ export const ACTIONS = {
   SET_PHOTO_DATA: 'SET_PHOTO_DATA',
   SET_TOPIC_DATA: 'SET_TOPIC_DATA',
   SELECT_PHOTO: 'SELECT_PHOTO',
-  DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS'
+  DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
+  GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS',
+  SET_SELECTED_TOPIC: 'SET_SELECTED_TOPIC'
 }
 
 function reducer(state, action) {
-  const updatedState = { ...state }
   const { type, payload } = action
   switch (type) {
     case ACTIONS.FAV_PHOTO_ADDED:
@@ -33,6 +34,11 @@ function reducer(state, action) {
     case ACTIONS.SET_TOPIC_DATA:
       return { ...state, topics: payload.topicsData }
 
+    case ACTIONS.GET_PHOTOS_BY_TOPICS:
+      return { ...state, photos: payload.topicPhotoData }
+      
+    case ACTIONS.SET_SELECTED_TOPIC:
+      return { ...state, selectedTopic: payload.topicId }
 
     default:
       throw new Error(
@@ -40,7 +46,6 @@ function reducer(state, action) {
       );
   }
 }
-
 const useApplicationData = () => {
   const [state, dispatch] = useReducer(reducer,
     {
@@ -48,7 +53,8 @@ const useApplicationData = () => {
       selectedPhoto: null,
       favourites: [],
       photos: [],
-      topics: []
+      topics: [],
+      selectedTopic: null
     })
 
   useEffect(() => {
@@ -70,6 +76,22 @@ const useApplicationData = () => {
       .catch((error) => console.log(error))
 
   }, []);
+
+  useEffect(() => {
+    if (state.selectedTopic) {
+      axios.get(`/api/topics/photos/${state.selectedTopic}`)
+        .then(res => {
+          const topicPhotoData = res.data;
+          dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: { topicPhotoData } });
+        })
+        .catch(error => console.log(error));
+    }
+  }, [state.selectedTopic]);
+
+  /*--------------    Set topic specific photos   --------------*/
+  const handleTopicClick = (topicId) => {
+    dispatch({ type: ACTIONS.SET_SELECTED_TOPIC, payload: { topicId } });
+  };
 
   /*--------------    Toggle Fav Photo   --------------*/
   const toggleFavourite = (photoId) => {
@@ -96,7 +118,8 @@ const useApplicationData = () => {
     topics: state.topics,
     toggleFavourite,
     displayModalWindow,
-    closeModalWindow
+    closeModalWindow,
+    handleTopicClick
   };
 }
 

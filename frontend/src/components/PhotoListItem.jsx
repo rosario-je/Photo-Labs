@@ -4,19 +4,23 @@ import "../styles/PhotoListItem.scss";
 import "../styles/PhotoDetailsModal.scss";
 
 const PhotoListItem = (props) => {
-  const { data, favourites, onToggleFavourite, displayModalWindow, className } = props;
+  const { data, favourites, onToggleFavourite, displayModalWindow, className } =
+    props;
+
   const {
     location: { city, country },
-    user: { name, profile, username },
+    user: { name, profile },
     urls: { regular },
   } = data;
 
+  // Check if the photo is in the favorites list
   const selected = favourites.includes(data.id);
 
+  // Toggle the favorite status of the photo
   const handleFavButtonClick = () => {
     onToggleFavourite(data.id);
   };
-
+  // Display the modal window with photo details
   const handleClick = () => {
     displayModalWindow(data);
   };
@@ -24,7 +28,7 @@ const PhotoListItem = (props) => {
   return (
     <article key={data.key} className={className}>
       <div className="photo-list__item">
-        <PhotoFavButton onClick={handleFavButtonClick} selected={selected} />
+        <PhotoFavButton onClick={handleFavButtonClick} selected={selected} />{" "}
         <img
           className="photo-list__image"
           src={regular}
@@ -39,7 +43,6 @@ const PhotoListItem = (props) => {
           />
           <div className="photo-list__user-info">
             <h2>{name}</h2>
-
             <h3 className="photo-list__user-location">
               {city}, {country}
             </h3>

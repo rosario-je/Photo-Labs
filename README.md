@@ -45,7 +45,9 @@ This was a project for the Lighthouse Labs Web Development Bootcamp where studen
 ```sh
 cd frontend
 npm install
-sh
+```
+
+```sh
 Copy code
 cd ../backend
 npm install

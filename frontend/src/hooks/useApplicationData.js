@@ -15,6 +15,7 @@ export const ACTIONS = {
 function reducer(state, action) {
   const { type, payload } = action
   switch (type) {
+
     case ACTIONS.FAV_PHOTO_ADDED:
       return { ...state, favourites: [...state.favourites, payload.photoId] }
 
@@ -56,7 +57,7 @@ const useApplicationData = () => {
       topics: []
     })
 
-  // This useEffect is responsible for fetching all photos from the API and updating the state with the retrieved data.
+  // Fetch all photos from the API and updating the state with the retrieved data.
   useEffect(() => {
     axios.get("/api/photos")
       .then((res) => {
@@ -66,7 +67,7 @@ const useApplicationData = () => {
       .catch((error) => console.log(error));
   }, []);
 
-  // This useEffect is responsible for fetchin all topics from the API and updating the state with the retrieved data.
+  // Fetch all topics from the API and updating the state with the retrieved data.
   useEffect(() => {
     axios.get("/api/topics")
       .then((res) => {
@@ -77,7 +78,7 @@ const useApplicationData = () => {
 
   }, []);
 
-  // This useEffect is responsible for fetching all the photos that are under the specific category id and updating the state with the retrieved data.
+  // Fetch all the photos that are under the specific category id and updating the state with the retrieved data.
   useEffect(() => {
     if (state.selectedTopic) {
       axios.get(`/api/topics/photos/${state.selectedTopic}`)

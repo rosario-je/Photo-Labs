@@ -131,11 +131,8 @@ const useApplicationData = () => {
 
   /*--------------    Display Fav Photos   --------------*/
   const displayFavPhotos = () => {
-    console.log('test');
     dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS, payload: { modalWindowState: true } })
     dispatch({ type: ACTIONS.DISPLAY_FAV_PHOTOS, payload: { favouritesState: true } })
-    // dispatch({ type: ACTIONS.SELECT_PHOTO, payload: { data: state.favourites } })
-
   }
 
   return {

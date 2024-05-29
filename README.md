@@ -6,7 +6,6 @@ PhotoLabs is a React-based single-page application (SPA) that allows users to vi
 
 PhotoLabs is designed to provide a frontend user experience for interacting with photos. Users can view photos, navigate through different photo categories, view larger versions of photos and like photos.
 
-This project demonstrates the use of React, Webpack, Babel, and Express for building a dynamic web application. It includes both client-side and server-side components to handle user interactions, photo viewing, and liking photos. This project also demonstrates the use of PostgreSQL for data persistence.
 
 This was a project for the Lighthouse Labs Web Development Bootcamp where students learned to finish a full stack application by doing the following:
 

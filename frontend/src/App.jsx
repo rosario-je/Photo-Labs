@@ -39,10 +39,10 @@ const App = () => {
       {toggleModalWindow && (
         <PhotoDetailsModal
           onClose={closeModalWindow}
+          toggleFavourite={toggleFavourite}
           photo={ favouritesState ? null : selectedPhoto}
           favourites={favourites}
           favouritesState={favouritesState}
-          toggleFavourite={toggleFavourite}
         />
       )}
     </div>

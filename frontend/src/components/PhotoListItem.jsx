@@ -29,7 +29,7 @@ const PhotoListItem = (props) => {
   return (
     <article key={data.id} className={className}>
       <div className="photo-list__item">
-        <PhotoFavButton onClick={handleFavButtonClick} selected={selected} />{" "}
+        <PhotoFavButton onClick={handleFavButtonClick} selected={selected} />
         <img
           className="photo-list__image"
           src={regular}

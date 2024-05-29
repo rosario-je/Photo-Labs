@@ -5,15 +5,16 @@ import PhotoFavButton from "components/PhotoFavButton";
 import PhotoList from "components/PhotoList";
 
 const PhotoDetailsModal = (props) => {
-  const { onClose, photo, favourites, toggleFavourite } = props;
-  const { similar_photos } = photo;
-  const photoArray = Object.values(similar_photos);
-
-  //Turn selected to true if the photo id is found in the "favourites" statexszza
-  const selected = favourites.includes(photo.id);
+  const { onClose, photo, favourites, toggleFavourite, favouritesState } = props;
+  
+  // Conditionally set photoArray
+  const photoArray = favouritesState ? favourites : photo ? Object.values(photo.similar_photos) : [];
+  
+  // Turn selected to true if the photo id is found in the "favourites" state
+  const selected = photo && favourites.includes(photo);
 
   const handleFavButtonClick = () => {
-    toggleFavourite(photo.id);
+    toggleFavourite(photo);
   };
 
   return (
@@ -22,30 +23,36 @@ const PhotoDetailsModal = (props) => {
         <img src={closeSymbol} alt="close symbol" />
       </button>
 
-      <article key={photo.id}>
-        <div className="photo-details-modal__main__image">
-          <PhotoFavButton onClick={handleFavButtonClick} selected={selected} />
-          <img
-            className="photo-details-modal__image"
-            src={photo.urls.regular}
-            alt="image"
-          />
-          <div className="photo-list__user-details">
+      {!favouritesState && photo && (
+        <article key={photo.id}>
+          <div className="photo-details-modal__main__image">
+            <PhotoFavButton onClick={handleFavButtonClick} selected={selected} />
             <img
-              className="photo-list__user-profile"
-              src={photo.user.profile}
-              alt="user profile"
+              className="photo-details-modal__image"
+              src={photo.urls.regular}
+              alt="image"
             />
-            <div className="photo-list__user-info">
-              <h2>{photo.user.name}</h2>
-              <h3 className="photo-list__user-location">
-                {photo.location.city}, {photo.location.country}
-              </h3>
+            <div className="photo-list__user-details">
+              <img
+                className="photo-list__user-profile"
+                src={photo.user.profile}
+                alt="user profile"
+              />
+              <div className="photo-list__user-info">
+                <h2>{photo.user.name}</h2>
+                <h3 className="photo-list__user-location">
+                  {photo.location.city}, {photo.location.country}
+                </h3>
+              </div>
             </div>
           </div>
-        </div>
-      </article>
-      <header className="photo-details-modal__header">Related Photos</header>
+        </article>
+      )}
+
+      <header className="photo-details-modal__header">
+        {favouritesState ? "Favourite Photos" : "Related Photos"}
+      </header>
+      
       <PhotoList
         photos={photoArray}
         favourites={favourites}

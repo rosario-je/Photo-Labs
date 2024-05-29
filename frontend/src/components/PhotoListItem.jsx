@@ -14,11 +14,12 @@ const PhotoListItem = (props) => {
   } = data;
 
   // Check if the photo is in the favorites list
-  const selected = favourites.includes(data.id);
+  const selected = favourites.includes(data);
+
 
   // Toggle the favorite status of the photo
   const handleFavButtonClick = () => {
-    onToggleFavourite(data.id);
+    onToggleFavourite(data);
   };
   // Display the modal window with photo details
   const handleClick = () => {
@@ -26,7 +27,7 @@ const PhotoListItem = (props) => {
   };
 
   return (
-    <article key={data.key} className={className}>
+    <article key={data.id} className={className}>
       <div className="photo-list__item">
         <PhotoFavButton onClick={handleFavButtonClick} selected={selected} />{" "}
         <img

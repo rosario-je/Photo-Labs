@@ -5,13 +5,15 @@ import PhotoFavButton from "components/PhotoFavButton";
 import PhotoList from "components/PhotoList";
 
 const PhotoDetailsModal = (props) => {
-  const { onClose, photo, favourites, toggleFavourite, favouritesState } = props;
-  
-  // Conditionally set photoArray
-  const photoArray = favouritesState ? favourites : photo ? Object.values(photo.similar_photos) : [];
-  
+  const { onClose, photo, favourites, toggleFavourite, favouritesState } =
+    props;
+
+  const photoArray = favouritesState
+    ? favourites
+    : Object.values(photo.similar_photos);
+
   // Turn selected to true if the photo id is found in the "favourites" state
-  const selected = photo && favourites.includes(photo);
+  const selected = favourites.includes(photo);
 
   const handleFavButtonClick = () => {
     toggleFavourite(photo);
@@ -23,10 +25,13 @@ const PhotoDetailsModal = (props) => {
         <img src={closeSymbol} alt="close symbol" />
       </button>
 
-      {!favouritesState && photo && (
+      {!favouritesState && (
         <article key={photo.id}>
           <div className="photo-details-modal__main__image">
-            <PhotoFavButton onClick={handleFavButtonClick} selected={selected} />
+            <PhotoFavButton
+              onClick={handleFavButtonClick}
+              selected={selected}
+            />
             <img
               className="photo-details-modal__image"
               src={photo.urls.regular}
@@ -52,7 +57,7 @@ const PhotoDetailsModal = (props) => {
       <header className="photo-details-modal__header">
         {favouritesState ? "Favourite Photos" : "Related Photos"}
       </header>
-      
+
       <PhotoList
         photos={photoArray}
         favourites={favourites}

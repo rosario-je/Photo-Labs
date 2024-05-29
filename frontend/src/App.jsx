@@ -15,12 +15,14 @@ const App = () => {
     toggleModalWindow,
     selectedPhoto,
     favourites,
+    favouritesState,
     photos,
     topics,
     toggleFavourite,
     displayModalWindow,
     closeModalWindow,
     handleTopicClick,
+    displayFavPhotos
   } = useApplicationData();
 
   return (
@@ -32,12 +34,14 @@ const App = () => {
         favourites={favourites}
         toggleFavourite={toggleFavourite}
         handleTopicClick={handleTopicClick}
+        displayFavPhotos={displayFavPhotos}
       />
       {toggleModalWindow && (
         <PhotoDetailsModal
           onClose={closeModalWindow}
-          photo={selectedPhoto}
+          photo={ favouritesState ? null : selectedPhoto}
           favourites={favourites}
+          favouritesState={favouritesState}
           toggleFavourite={toggleFavourite}
         />
       )}
